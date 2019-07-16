@@ -14,8 +14,8 @@
     "lint": "eslint 'src/**/*.ts'",
     "lint-staged": "lint-staged",
     "start": "node -r ts-node/register src/index.ts",
-    "version": "npm version patch",
-    "postversion": "git push --follow-tags"
+    "bump": "npm version patch",
+    "postbump": "git push --follow-tags"
   },
   "repository": {
     "type": "git",
