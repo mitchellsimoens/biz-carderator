@@ -29,6 +29,11 @@
   "bugs": {
     "url": "https://github.com/mitchellsimoens/biz-carderator/issues"
   },
+  "keywords": [
+    "e-card",
+    "business",
+    "card"
+  ],
   "homepage": "https://github.com/mitchellsimoens/biz-carderator#readme",
   "husky": {
     "hooks": {
