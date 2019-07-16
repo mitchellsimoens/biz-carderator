@@ -1,5 +1,11 @@
 # biz-carderator
 
+[![npm](https://img.shields.io/npm/v/biz-carderator.svg)](https://www.npmjs.com/package/biz-carderator)
+[![npm](https://img.shields.io/npm/dm/biz-carderator.svg)](https://www.npmjs.com/package/biz-carderator)
+[![CircleCI](https://circleci.com/gh/mitchellsimoens/biz-carderator.svg?style=svg&circle-token=11be9f4cefe754b547e88df8e203ea11a304662f)](https://circleci.com/gh/mitchellsimoens/biz-carderator)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+[![MIT Licensed](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](./LICENSE)
+
 Allows building a business card that can be run in the terminal.
 
 ## Usage
