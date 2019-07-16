@@ -1,0 +1,18 @@
+{
+  "editor.formatOnSave": true,
+  "[json]": {
+    "editor.formatOnSave": false,
+  },
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "cSpell.words": [
+    "carderator",
+    "colorette",
+    "gitlab",
+    "linkedin"
+  ]
+}

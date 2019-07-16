@@ -1,0 +1,82 @@
+aliases:
+  - &restore-npm-cache
+    key: v1-dependencies-{{ checksum "yarn.lock" }}
+    name: Restoring node_modules/ cache
+  - &save-npm-cache
+    key: v1-dependencies-{{ checksum "yarn.lock" }}
+    name: Saving node_modules/ cache
+    paths:
+      - node_modules
+
+defaults: &defaults
+  docker:
+    - image: circleci/node:10
+  working_directory: ~/repo
+
+version: 2.1
+
+jobs:
+  build:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache: *restore-npm-cache
+      - run: yarn build
+
+  install-dependencies:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache: *restore-npm-cache
+      - run:
+          name: Install Node modules
+          command: yarn
+      - save_cache: *save-npm-cache
+
+  lint:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache: *restore-npm-cache
+      - run: yarn lint
+
+  publish:
+    <<: *defaults
+    steps:
+      - checkout
+      - run:
+          name: Setup .npmrc
+          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
+      - run: yarn
+      - run: yarn lint
+      - run: yarn build
+      - run: npm publish
+
+workflows:
+  version: 2
+  test-and-build:
+    jobs:
+      - install-dependencies:
+          filters:
+            tags:
+              ignore: /^v.*/
+      - lint:
+          requires:
+            - install-dependencies
+          filters:
+            tags:
+              ignore: /^v.*/
+      - build:
+          requires:
+            - lint
+          filters:
+            tags:
+              ignore: /^v.*/
+  publish:
+    jobs:
+      - publish:
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^v.*/
